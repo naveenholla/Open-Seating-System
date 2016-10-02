@@ -1,0 +1,2 @@
+$wifiname=Get-Content NetworkName.txt
+schtasks /Create  /SC ONEVENT /MO "*[System[Provider[@Name='Microsoft-Windows-WLAN-AutoConfig'] and EventID=8001]] and (*[EventData[Data[@Name='SSID'] and (Data='$Wifiname')]])" /EC Microsoft-Windows-WLAN-AutoConfig/Operational /TN "OpenSeatingSystem" /tr "powershell.exe -windowstyle hidden  honeywellOpenSeatingSystem.ps1 "

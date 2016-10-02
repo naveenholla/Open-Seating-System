@@ -1,0 +1,34 @@
+README:
+
+1.Database:
+	Database name is 'honeywell.sql', you can import it from database folder to server.
+	It contains 3 tables->	1.EMPLOYEES
+							2.LOOKUP
+							3.ROUTER INFO
+
+		1.EMPLOYEES : 	Contains basic details of employees.
+						Values are inserted to table when client is 'first time' connected to network, this is used to fetch the client mac address and store in database.
+		2.LOOKUP	:	This is the list of employees who are currently connected to the live network, this contains the router mac address
+						of connected client.
+		3.ROUTER INFO:	This contains the information about the location of the router, i.e floor, block and pillar information which will be
+						hard coded during router installation.
+
+2.Server Side Script:
+	The web app to display the employee location resides in server.
+	This contains scripts to handle data sent from the footprint program running in background of the clients and updates it in the database.
+	*Emplyee.php	:	Receives employee details for the first time.
+	*Search.php		:	Takes the employee name to be searched and checks the lookup table to check if employee is currently active.
+						Location will be displayed if he is connected to live network.
+
+
+**************************************************************************************************************************************************
+Note:	*
+		We have deployed the database and server side script in the localhost(xampp). Which can also be accessed through mobile.
+
+		**
+		It's better if the server used to handle requests is linux based.This is because server pings the user to check his availability just before displaying the location details, this is to ensure that the latest location will be fetched.
+**************************************************************************************************************************************************
+
+Assumptions:
+	The values in the router info table are assumed.
+**************************************************************************************************************************************************

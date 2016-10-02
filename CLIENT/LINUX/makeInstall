@@ -1,0 +1,32 @@
+#!/bin/bash
+sudo cp initiate /etc/network/if-up.d
+sudo chmod +x /etc/network/if-up.d/initiate
+
+formDetails=$(zenity --width=400 --height=300 --forms --title="Registration" \
+	--text="Enter your information." \
+	--separator="," \
+	--add-entry="Name" \
+	--add-entry="Employee ID" \
+	--add-entry="Department" \
+	--add-entry="Designation" \
+	 )
+
+
+name=$(awk -F, '{print $1}' <<<$formDetails)
+eid=$(awk -F, '{print $2}' <<<$formDetails)
+dept=$(awk -F, '{print $3}' <<<$formDetails)
+desig=$(awk -F, '{print $4}' <<<$formDetails)
+interface=$(route -n | awk '/UG/{print$8}')
+clientMac=$(ifconfig | grep `ls /sys/class/net | grep "$interface"` | awk '/HWaddr/{print $5}')
+
+curl --data "eid=$eid&smac=$clientMac&desg=$desig&ename=$name&dept=$dept" http://localhost/honeywell/Emplyee.php
+
+##################---------CODE ENDS HERE---------###############################
+#@AUTHOR MRX
+#----------------------Description------------
+#To run this open terminal and run to using the commans $ bash makeInstall
+#This code takes the employee name, ID, designation, department details from the employee
+# and fetches their MAC address, IP address and updates the clientDetails table in the database 
+#
+#This is code is copied to the /etc/network/if-up.d/ directory so that 
+#it runs whenever there is change in network. 

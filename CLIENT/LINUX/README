@@ -1,0 +1,27 @@
+README:
+
+This contains 2 files:
+	1. makeInstall
+	2. initiate
+
+	These are small footprint programs which are responsible for sending location details of the client whenever they connect to honeywell network.
+
+********************************************************************************************************************************************
+Steps:
+1. Make 'makeInstall' as executable.
+2. Open terminal and run command.
+		$bash makeInstall
+		'enter the password' 
+3. Pop up will appear, enter the appropriate details and submit it.
+4. done...!
+
+Note: The script will work depending on the public ip of the network. Currently its hard coded, please replace it with your network public ip this can be found in 'initiate' file 'line number 6'
+********************************************************************************************************************************************
+
+How it works:
+1. The footprint program in background will start the initiate program which is responsible for sending data to the server when the device 	connects to the network. This will work even after rebooting the device.
+2. If the initiate file is deleted, then run makeInstall again, this will fix the problem.
+********************************************************************************************************************************************
+
+Advantage:
+The script doesn't require restarting of system after the installation, since this works on real time monitoring of the network.

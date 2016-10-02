@@ -1,0 +1,34 @@
+#!/bin/bash
+
+ip=$(curl -s ifconfig.co)
+
+#VERIFY IF THE HOST IS IN HONEYWELL NETWORK BY CHECKING THEIR PUBLIC IP
+if [[ ! "$ip" == "106.51.25.59" ]]; 
+then
+	echo "$ip found."
+	exit
+else
+	
+		routerMac=$(arp -n | grep -w `route -n | awk '/UG/{print$2}'` | awk '{print $3}')
+		echo "Router MAC : $routerMac"
+		interface=$(route -n | awk '/UG/{print$8}')
+		echo "Interface : $interface"
+		clientMac=$(ifconfig | grep `ls /sys/class/net | grep "$interface"` | awk '/HWaddr/{print $5}')
+		echo "Client MAC : $clientMac"
+
+		clientIp=$(ip addr show dev "$interface" | grep -w inet | awk '{print$2}' | cut -d'/' -f1)
+		echo "CIP : $clientIp"
+		
+		#Use curl to update the lookup table.
+		#Loopup table consists routerMac, clientMac, clientIp
+		curl --data "rmac=$routerMac&smac=$clientMac&sip=$clientIp" http://localhost/honeywell/index.php
+	fi
+fi
+
+##################---------CODE ENDS HERE---------######################################
+#@AUTHOR MRX
+#----------------------Description------------
+#This is the script which runs when ever there is change in network(i.e laptop changes network)
+#Check the public IP and run the script only if the device is in HONEYWELL company network.
+#If the device is in the company network, then update its location in the router database.
+#Router database contains routerMac, clientMac, clientIP address.    

@@ -1,0 +1,25 @@
+Readme:
+
+	This repository contains open seating system client for windows.
+
+	It contains :
+		1. OpenSeatingSystem.bat
+		2. NetworkName.txt
+		3. OpenSeatingSystemSchedule.ps1
+		4.Invisible.VBS
+********************************************************************************************************************************************
+Steps:
+	1. Change the text in NetworkName.txt file to your present wifi name
+	2. Double click on OpenSeatingSystem.bat
+********************************************************************************************************************************************
+
+Behind the scenes:
+1. When clicked on Invisible.VBS there will be a prompt to open with admin permission.
+2. There will be a pop up to get credentials of the employee for the first time.
+3. These credentials along with employees mac will be sent to central server.
+4. All the 3 above files will be copied to windows/sys32 folder.
+5. The client's present ip, client's mac, the router's mac which the client is connected to, will be sent to central database.
+6. There will be a task scheduled which will be triggered on connecting to specifically to honeywell network without restarting the device.
+7. Hence even if you restart the device and connect to the network the given system will work.
+
+********************************************************************************************************************************************
