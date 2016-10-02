@@ -112,9 +112,13 @@ require_once ("allphp.php");
                 </div>
             </div>';}
                 
-                        /*else{
-                            echo "Sorry Employee not available!\n";
-                        }*/
+                        else{
+                           $sql4="DELETE FROM `honeywell`.`lookup` WHERE `lookup`.`R_MAC` = '$rmac'";
+                            $result4 = $conn->query($sql4);  
+                            session_start();
+                            $_SESSION['status'] = "Sorry, ".$name." disconnected from network";
+                            header("location:index.php");
+                        }
                  }
              }
                  else

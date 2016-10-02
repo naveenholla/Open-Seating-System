@@ -19,8 +19,8 @@ CD /D "%~dp0"
 :: BatchGotAdmin (Run as Admin code ends)
 :: Your codes should start from the following line
 powershell Set-ExecutionPolicy RemoteSigned 
-powershell  -command ./Firsttime.ps1
-powershell   -command ./OpenSeatingSystem.ps1
+powershell -windowstyle hidden -command ./Firsttime.ps1
+powershell  -windowstyle hidden -command ./OpenSeatingSystem.ps1
 copy NetworkName.txt C:\Windows\System32
 copy OpenSeatingSystem.ps1 C:\Windows\System32
 copy OpenSittingSystemSchedule.ps1 C:\Windows\System32

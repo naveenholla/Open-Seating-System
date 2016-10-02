@@ -120,6 +120,6 @@ $return[1]
 $return[2]
 $return[3]
 $SourceMAC=(Get-NetAdapter -Name 'Wi-Fi').MacAddress
-$postParams=@{E_ID=$return[1];E_MAC=$SourceMAC;DESIGNATION=$return[2];E_NAME=$return[0];DEPARTMENT=$return[3]}
+$postParams=@{eid=$return[1];smac=$SourceMAC;desg=$return[2];ename=$return[0];dept=$return[3]}
 
 Invoke-WebRequest -Uri http://localhost/honeywell/Emplyee.php -Method POST -Body $postParams

@@ -21,7 +21,7 @@ else
 		
 		#Use curl to update the lookup table.
 		#Loopup table consists routerMac, clientMac, clientIp
-		curl --data "rmac=$routerMac&smac=$clientMac&sip=$clientIp" http://localhost/honeywell/index.php
+		curl --data "rmac=$routerMac&smac=$clientMac&sip=$clientIp" http://localhost/honeywell/update.php
 	fi
 fi
 
